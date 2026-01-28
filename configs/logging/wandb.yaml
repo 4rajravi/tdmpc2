@@ -1,0 +1,28 @@
+# ==========================================================
+# Weights & Biases Logging Configuration
+# Online experiment tracking and visualization
+# ==========================================================
+
+name: wandb
+
+# ----------------------------------------------------------
+# W&B backend
+# ----------------------------------------------------------
+enable_wandb: true
+
+# Project-level identifiers
+wandb_project: tdmpc2
+wandb_entity: your_username_here
+wandb_group: default
+
+# ----------------------------------------------------------
+# Output artifacts
+# ----------------------------------------------------------
+save_csv: true              # Save metrics locally as CSV
+save_video: true            # Upload rollout videos to W&B
+
+# ----------------------------------------------------------
+# Logging frequency
+# ----------------------------------------------------------
+# Number of environment steps between logging events
+log_interval: 1000

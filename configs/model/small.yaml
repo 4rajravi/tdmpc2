@@ -1,0 +1,42 @@
+# ==========================================================
+# Small TD-MPC2 Model Configuration
+# Fast debugging and sanity-check runs
+# ==========================================================
+
+model_size: small
+
+# ----------------------------------------------------------
+# Representation & dynamics dimensions
+# ----------------------------------------------------------
+enc_dim: 128              # Encoder output dimension
+latent_dim: 256           # World-model latent state size
+mlp_dim: 256              # Hidden width for all MLP modules
+
+# ----------------------------------------------------------
+# Convolutional encoder (pixel observations)
+# ----------------------------------------------------------
+num_channels: 16          # Base CNN channel count
+num_enc_layers: 2         # Number of convolutional layers
+
+# ----------------------------------------------------------
+# Value ensemble (distributional)
+# ----------------------------------------------------------
+num_q: 2                  # Smaller ensemble for speed
+num_bins: 51              # Coarser value distribution
+
+# ----------------------------------------------------------
+# SimNorm (latent normalization)
+# ----------------------------------------------------------
+simnorm_dim: 4             # Reduced group size
+
+# ----------------------------------------------------------
+# Regularization
+# ----------------------------------------------------------
+dropout: 0.0
+
+# ----------------------------------------------------------
+# Policy prior / entropy control
+# ----------------------------------------------------------
+log_std_min: -10           # Minimum policy std (log scale)
+log_std_max: 2             # Maximum policy std (log scale)
+entropy_coef: 1e-4         # Entropy regularization weight

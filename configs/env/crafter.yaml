@@ -1,0 +1,67 @@
+# ==========================================================
+# Crafter Environment Configuration
+# Used ONLY for environment construction & observation setup
+# ==========================================================
+
+name: crafter
+task: crafter_reward
+
+# ----------------------------------------------------------
+# Observations
+# ----------------------------------------------------------
+# Crafter provides pixel-based observations
+obs_type: pixel
+
+# Agent does not observe full environment state
+partial_observable: true
+
+# ----------------------------------------------------------
+# Image preprocessing
+# ----------------------------------------------------------
+image_size: 64          # Final resized image (HxW)
+channels: 3             # RGB
+grayscale: false        # Keep color information
+normalize_obs: true     # Scale pixels to [0, 1]
+
+# ----------------------------------------------------------
+# Temporal context
+# ----------------------------------------------------------
+# Number of stacked frames per observation
+# TD-MPC2 usually prefers frame_stack=1 since it learns
+# temporal dynamics internally via latent rollout
+frame_stack: 1
+
+# ----------------------------------------------------------
+# Episode control
+# ----------------------------------------------------------
+episode_length: 1000    # Maximum steps per episode
+
+# ----------------------------------------------------------
+# Rendering
+# ----------------------------------------------------------
+render: false
+render_mode: rgb_array
+
+# ----------------------------------------------------------
+# Action space
+# ----------------------------------------------------------
+discrete_actions: true
+num_actions: 17
+action_repeat: 1
+
+# ----------------------------------------------------------
+# Environment wrappers
+# ----------------------------------------------------------
+use_time_limit: true
+use_reward_clipping: false
+
+# ----------------------------------------------------------
+# Evaluation-only settings
+# ----------------------------------------------------------
+eval_render: true
+eval_frame_skip: 1
+
+# ----------------------------------------------------------
+# Reproducibility
+# ----------------------------------------------------------
+seed: ${seed}

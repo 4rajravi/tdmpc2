@@ -1,0 +1,49 @@
+# ==========================================================
+# TD-MPC2 Main Configuration
+# This file only wires together sub-configs.
+# All algorithm hyperparameters live in their own modules.
+# ==========================================================
+
+# ----------------------------------------------------------
+# Hydra defaults
+# ----------------------------------------------------------
+# Selects which configuration files are loaded.
+# Each entry corresponds to a folder under configs/.
+#
+# Example:
+#   - env: minigrid        → configs/env/minigrid.yaml
+#   - model: medium        → configs/model/medium.yaml
+#
+# Override at runtime with:
+#   python train.py env=crafter model=large planner=no_mpc
+#
+defaults:
+  - env: minigrid          # Environment definition
+  - obs: pixel             # Observation processing (pixel | state)
+  - model: small          # Model capacity (small | medium | large)
+  - planner: mpc           # Planning method (mpc | no_mpc)
+  - training: default      # Training hyperparameters
+  - evaluation: default    # Evaluation behavior
+  - logging: local         # Logging backend (local | wandb)
+  - hydra: default         # Hydra output directories
+
+# ----------------------------------------------------------
+# Global experiment settings
+# ----------------------------------------------------------
+
+seed: 1                     # Global RNG seed for reproducibility
+
+exp_name: tdmpc2            # Experiment name (used for logging)
+
+# Hydra-generated runtime directory:
+#   outputs/YYYY-MM-DD/HH-MM-SS
+work_dir: ${hydra:runtime.output_dir}
+
+# ----------------------------------------------------------
+# Runtime / development flags
+# ----------------------------------------------------------
+
+save_agent: true            # Save final model checkpoint
+
+debug: false                # Enable debug mode (short runs, extra logging)
+test_only: false            # Skip training and run evaluation only

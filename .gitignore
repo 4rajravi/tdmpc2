@@ -1,0 +1,47 @@
+# --- Python Base ---
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.env
+
+
+# --- RL & Deep Learning (The Big Stuff) ---
+# Ignore saved model weights and checkpoints
+*.pt
+*.pth
+*.ckpt
+*.h5
+
+
+# Ignore large replay buffer data (often stored as numpy or pickle)
+*.npy
+*.npz
+*.pkl
+*.pickle
+data/
+outputs/
+logs/
+
+
+# --- Simulation & Physics Engines ---
+# MuJoCo logs and lock files
+__mujoco_lock__
+*.log
+recordings/
+video/
+
+
+# --- IDEs & OS ---
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+
+# --- Configs (Optional) ---
+# Keep your config.yaml, but ignore secret keys if you have any
+# .secrets.yaml
+

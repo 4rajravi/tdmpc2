@@ -1,0 +1,33 @@
+# ==========================================================
+# Hydra Submitit Launcher Configuration (Local Execution)
+# Used for parallel experiment launches on a single machine
+# ==========================================================
+
+# ----------------------------------------------------------
+# Launcher target
+# ----------------------------------------------------------
+# Runs jobs locally via submitit (no Slurm required)
+_target_: hydra_plugins.hydra_submitit_launcher.submitit_launcher.LocalLauncher
+
+# ----------------------------------------------------------
+# Compute resources per job
+# ----------------------------------------------------------
+cpus_per_task: 8          # Number of CPU cores per run
+gpus_per_node: 0          # GPUs per job (0 for CPU-only systems)
+mem_gb: 16                # Memory allocated per job (GB)
+
+# ----------------------------------------------------------
+# Runtime limits
+# ----------------------------------------------------------
+timeout_min: 0            # 0 = no timeout
+
+# ----------------------------------------------------------
+# Parallelism
+# ----------------------------------------------------------
+nodes: 1                  # Maximum concurrent jobs
+
+# ----------------------------------------------------------
+# Submitit metadata
+# ----------------------------------------------------------
+# Directory used by submitit to store logs and job state
+submitit_folder: ${hydra.sweep.dir}/.submitit

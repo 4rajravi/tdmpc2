@@ -1,0 +1,46 @@
+# ==========================================================
+# Evaluation Configuration
+# Controls validation rollouts and logging behavior
+# ==========================================================
+
+# ----------------------------------------------------------
+# Evaluation frequency
+# ----------------------------------------------------------
+# Number of environment steps between evaluations
+eval_freq: 500
+
+# ----------------------------------------------------------
+# Evaluation episodes
+# ----------------------------------------------------------
+# Number of full episodes per evaluation phase
+eval_episodes: 5
+
+# ----------------------------------------------------------
+# Planning mode
+# ----------------------------------------------------------
+# If true:
+#   - disables exploration noise
+#   - uses mean action sequences
+#   - turns off stochastic sampling
+deterministic: false
+
+# ----------------------------------------------------------
+# Rendering / video recording
+# ----------------------------------------------------------
+save_video: true
+video_fps: 30
+video_format: mp4
+
+# ----------------------------------------------------------
+# Output logging
+# ----------------------------------------------------------
+save_csv: true
+save_metrics: true
+
+# ----------------------------------------------------------
+# Evaluation mode
+# ----------------------------------------------------------
+# If true:
+#   - training is skipped entirely
+#   - only evaluation rollouts are executed
+eval_only: false

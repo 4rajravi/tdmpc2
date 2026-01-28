@@ -1,0 +1,28 @@
+# ==========================================================
+# State Observation Configuration
+# Used for low-dimensional (vector) environments
+# ==========================================================
+
+type: state
+
+# ----------------------------------------------------------
+# Input dimensionality
+# ----------------------------------------------------------
+# Automatically inferred from environment observation space
+state_dim: auto
+
+# ----------------------------------------------------------
+# Preprocessing
+# ----------------------------------------------------------
+normalize: false              # Apply running mean/std normalization
+clip_obs: false               # Clip observations to fixed range
+
+# ----------------------------------------------------------
+# Encoder selection
+# ----------------------------------------------------------
+encoder: mlp                  # MLP-based encoder
+
+# ----------------------------------------------------------
+# Optional observation noise
+# ----------------------------------------------------------
+obs_noise_std: 0.0

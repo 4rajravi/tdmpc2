@@ -1,0 +1,74 @@
+# ==========================================================
+# Generic Gymnasium Environment Configuration
+# Used for classic-control and Box2D Gym environments
+# ==========================================================
+
+name: gymnasium
+
+# ----------------------------------------------------------
+# Environment task
+# ----------------------------------------------------------
+# Examples:
+#   CartPole-v1
+#   Acrobot-v1
+#   MountainCar-v0
+#   LunarLander-v2
+task: CartPole-v1
+
+# ----------------------------------------------------------
+# Observations
+# ----------------------------------------------------------
+# state  → low-dimensional vector observations
+# pixel  → rendered RGB observations
+obs_type: pixel
+partial_observable: false
+
+# ----------------------------------------------------------
+# Image preprocessing (used only if obs_type = pixel)
+# ----------------------------------------------------------
+image_size: 64
+channels: 3
+grayscale: false
+normalize_obs: true
+
+# ----------------------------------------------------------
+# Temporal context
+# ----------------------------------------------------------
+# Number of stacked observations per timestep
+# For state-based environments, frame stacking is usually unnecessary
+frame_stack: 1
+
+# ----------------------------------------------------------
+# Episode control
+# ----------------------------------------------------------
+episode_length: 500
+
+# ----------------------------------------------------------
+# Rendering
+# ----------------------------------------------------------
+render: false
+render_mode: rgb_array
+
+# ----------------------------------------------------------
+# Action space
+# ----------------------------------------------------------
+discrete_actions: true
+num_actions: 2
+action_repeat: 1
+
+# ----------------------------------------------------------
+# Environment wrappers
+# ----------------------------------------------------------
+use_time_limit: true
+use_reward_clipping: false
+
+# ----------------------------------------------------------
+# Evaluation-only settings
+# ----------------------------------------------------------
+eval_render: true
+eval_frame_skip: 1
+
+# ----------------------------------------------------------
+# Reproducibility
+# ----------------------------------------------------------
+seed: ${seed}

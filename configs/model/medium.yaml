@@ -1,0 +1,42 @@
+# ==========================================================
+# Medium TD-MPC2 Model Configuration
+# Default model for most experiments
+# ==========================================================
+
+model_size: medium
+
+# ----------------------------------------------------------
+# Representation & dynamics dimensions
+# ----------------------------------------------------------
+enc_dim: 256              # Encoder output dimension
+latent_dim: 512           # World-model latent state size
+mlp_dim: 512              # Hidden width for all MLP modules
+
+# ----------------------------------------------------------
+# Convolutional encoder (pixel observations)
+# ----------------------------------------------------------
+num_channels: 32          # Base CNN channel count
+num_enc_layers: 2         # Number of convolutional layers
+
+# ----------------------------------------------------------
+# Value ensemble (distributional)
+# ----------------------------------------------------------
+num_q: 5                  # Number of Q-function heads
+num_bins: 101             # Distributional value bins
+
+# ----------------------------------------------------------
+# SimNorm (latent normalization)
+# ----------------------------------------------------------
+simnorm_dim: 8             # Group size for SimNorm
+
+# ----------------------------------------------------------
+# Regularization
+# ----------------------------------------------------------
+dropout: 0.01
+
+# ----------------------------------------------------------
+# Policy prior / entropy control
+# ----------------------------------------------------------
+log_std_min: -10           # Minimum policy std (log scale)
+log_std_max: 2             # Maximum policy std (log scale)
+entropy_coef: 1e-4         # Entropy regularization weight

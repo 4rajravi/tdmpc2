@@ -1,0 +1,39 @@
+# ==========================================================
+# Pixel Observation Configuration
+# Defines how pixel observations are processed by the model
+# ==========================================================
+
+type: pixel
+
+# ----------------------------------------------------------
+# Input format
+# ----------------------------------------------------------
+channels: 3
+height: 64
+width: 64
+
+# ----------------------------------------------------------
+# Preprocessing
+# ----------------------------------------------------------
+normalize: true              # Divide pixel values by 255
+grayscale: false
+frame_stack: 1               # Temporal stacking before encoding
+
+# ----------------------------------------------------------
+# Encoder selection
+# ----------------------------------------------------------
+encoder: cnn                 # CNN-based visual encoder
+
+# ----------------------------------------------------------
+# Data augmentation (optional)
+# ----------------------------------------------------------
+# Random cropping improves generalization in visual RL,
+# but is usually disabled for small environments.
+random_crop: false
+crop_size: 64
+
+# ----------------------------------------------------------
+# Observation noise (optional)
+# ----------------------------------------------------------
+# Gaussian noise added after normalization
+obs_noise_std: 0.0

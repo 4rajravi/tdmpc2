@@ -1,0 +1,26 @@
+# ==========================================================
+# No-MPC Planner Configuration
+# Disables model-based planning (policy-only execution)
+# ==========================================================
+
+name: no_mpc
+enabled: false
+
+# ----------------------------------------------------------
+# Planning disabled
+# ----------------------------------------------------------
+horizon: 1                  # Single-step rollout
+iterations: 0               # No optimization
+num_samples: 0              # No candidate trajectories
+num_elites: 0               # No elite selection
+
+# ----------------------------------------------------------
+# Sampling behavior
+# ----------------------------------------------------------
+temperature: 0.0            # Deterministic action selection
+
+# ----------------------------------------------------------
+# Policy usage
+# ----------------------------------------------------------
+# Actions come directly from learned policy
+use_policy_prior: true

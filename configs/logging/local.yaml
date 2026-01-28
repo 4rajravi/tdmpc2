@@ -1,0 +1,28 @@
+# ==========================================================
+# Local Logging Configuration
+# Used for non-W&B / offline experimentation
+# ==========================================================
+
+name: local
+
+# ----------------------------------------------------------
+# Logging backends
+# ----------------------------------------------------------
+enable_wandb: false        # Disable Weights & Biases logging
+
+# ----------------------------------------------------------
+# Output artifacts
+# ----------------------------------------------------------
+save_csv: true             # Save metrics as CSV files
+save_video: true           # Save rollout videos (if enabled)
+
+# ----------------------------------------------------------
+# Logging frequency
+# ----------------------------------------------------------
+# Number of environment steps between logging events
+log_interval: 500
+
+# ----------------------------------------------------------
+# Console output
+# ----------------------------------------------------------
+print_metrics: true        # Print metrics to stdout

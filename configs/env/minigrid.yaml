@@ -1,0 +1,78 @@
+# ==========================================================
+# MiniGrid Environment Configuration
+# Partial-observation gridworld benchmark
+# ==========================================================
+
+name: minigrid
+
+# ----------------------------------------------------------
+# Environment task
+# ----------------------------------------------------------
+# Example tasks:
+#   MiniGrid-Empty-8x8-v0
+#   MiniGrid-DoorKey-8x8-v0
+#   MiniGrid-FourRooms-v0
+task: MiniGrid-Empty-8x8-v0
+
+# ----------------------------------------------------------
+# Observations
+# ----------------------------------------------------------
+# pixel → RGB grid image
+# state → low-dimensional symbolic state (if enabled)
+obs_type: pixel
+
+# MiniGrid environments are partially observable by default
+partial_observable: true
+
+# ----------------------------------------------------------
+# Image preprocessing
+# ----------------------------------------------------------
+image_size: 64
+channels: 3
+grayscale: false
+normalize_obs: true
+
+# ----------------------------------------------------------
+# Temporal context
+# ----------------------------------------------------------
+# Frame stacking can help with strong POMDP variants,
+# but TD-MPC2 typically performs well with frame_stack = 1
+frame_stack: 1
+
+# ----------------------------------------------------------
+# Episode control
+# ----------------------------------------------------------
+episode_length: 100
+
+# ----------------------------------------------------------
+# Rendering
+# ----------------------------------------------------------
+render: false
+render_mode: rgb_array       # human | rgb_array
+
+# ----------------------------------------------------------
+# Action space
+# ----------------------------------------------------------
+discrete_actions: true
+num_actions: 5
+action_repeat: 1
+
+# ----------------------------------------------------------
+# Environment wrappers
+# ----------------------------------------------------------
+use_time_limit: true
+
+# Action masking is optional for MiniGrid
+# If enabled, invalid actions are removed from the policy output
+use_action_masking: false
+
+# ----------------------------------------------------------
+# Evaluation-only settings
+# ----------------------------------------------------------
+eval_render: true
+eval_frame_skip: 1
+
+# ----------------------------------------------------------
+# Reproducibility
+# ----------------------------------------------------------
+seed: ${seed}
