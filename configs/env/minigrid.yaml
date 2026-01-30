@@ -47,30 +47,19 @@ episode_length: 100
 # ----------------------------------------------------------
 # Rendering
 # ----------------------------------------------------------
-render: false
 render_mode: rgb_array       # human | rgb_array
 
 # ----------------------------------------------------------
 # Action space
 # ----------------------------------------------------------
 discrete_actions: true
-num_actions: 5
 action_repeat: 1
 
-# ----------------------------------------------------------
-# Environment wrappers
-# ----------------------------------------------------------
-use_time_limit: true
-
-# Action masking is optional for MiniGrid
-# If enabled, invalid actions are removed from the policy output
-use_action_masking: false
 
 # ----------------------------------------------------------
 # Evaluation-only settings
 # ----------------------------------------------------------
 eval_render: true
-eval_frame_skip: 1
 
 # ----------------------------------------------------------
 # Reproducibility

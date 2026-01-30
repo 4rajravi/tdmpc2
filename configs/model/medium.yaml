@@ -8,35 +8,33 @@ model_size: medium
 # ----------------------------------------------------------
 # Representation & dynamics dimensions
 # ----------------------------------------------------------
-enc_dim: 256              # Encoder output dimension
-latent_dim: 512           # World-model latent state size #used in encoder #used in world model again
+enc_dim: 256              # Encoder output dimension #need this if we want to use projection
+latent_dim: 512           # World-model latent state size #used in encoder 
 mlp_dim: 512              # Hidden width for all MLP modules #used in world model
 
 # ----------------------------------------------------------
 # Convolutional encoder (pixel observations)
 # ----------------------------------------------------------
-num_channels: 32          # Base CNN channel count #used
-num_enc_layers: 2         # Number of convolutional layers 
+num_channels: 32          # Base CNN channel count
 
 # ----------------------------------------------------------
 # Value ensemble (distributional)
 # ----------------------------------------------------------
-num_q: 5                  # Number of Q-function heads #used
-num_bins: 101             # Distributional value bins #used
+num_q: 5                  # Number of Q-function heads 
+num_bins: 101             # Distributional value bins 
 
 # ----------------------------------------------------------
 # SimNorm (latent normalization)
 # ----------------------------------------------------------
-simnorm_dim: 8             # Group size for SimNorm #used
+simnorm_dim: 8             # Group size for SimNorm 
 
 # ----------------------------------------------------------
 # Regularization
 # ----------------------------------------------------------
-dropout: 0.01 #used
+dropout: 0.01 
 
 # ----------------------------------------------------------
 # Policy prior / entropy control
 # ----------------------------------------------------------
-log_std_min: -10           # Minimum policy std (log scale) #used
-log_std_max: 2             # Maximum policy std (log scale) #used
-entropy_coef: 1e-4         # Entropy regularization weight
+log_std_min: -10           # Minimum policy std (log scale) 
+log_std_max: 2             # Maximum policy std (log scale) 

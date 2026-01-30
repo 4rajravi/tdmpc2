@@ -39,27 +39,18 @@ episode_length: 1000    # Maximum steps per episode
 # ----------------------------------------------------------
 # Rendering
 # ----------------------------------------------------------
-render: false
 render_mode: rgb_array
 
 # ----------------------------------------------------------
 # Action space
 # ----------------------------------------------------------
-discrete_actions: true #not used
-num_actions: 17 #not used
-action_repeat: 1 #not used
-
-# ----------------------------------------------------------
-# Environment wrappers
-# ----------------------------------------------------------
-use_time_limit: true
-use_reward_clipping: false
+discrete_actions: true 
+num_actions: 17 
 
 # ----------------------------------------------------------
 # Evaluation-only settings
 # ----------------------------------------------------------
 eval_render: true
-eval_frame_skip: 1
 
 # ----------------------------------------------------------
 # Reproducibility

@@ -53,20 +53,12 @@ render_mode: rgb_array
 # Action space
 # ----------------------------------------------------------
 discrete_actions: true
-num_actions: 2
 action_repeat: 1
-
-# ----------------------------------------------------------
-# Environment wrappers
-# ----------------------------------------------------------
-use_time_limit: true
-use_reward_clipping: false
 
 # ----------------------------------------------------------
 # Evaluation-only settings
 # ----------------------------------------------------------
 eval_render: true
-eval_frame_skip: 1
 
 # ----------------------------------------------------------
 # Reproducibility

@@ -8,7 +8,7 @@ model_size: small
 # ----------------------------------------------------------
 # Representation & dynamics dimensions
 # ----------------------------------------------------------
-enc_dim: 128              # Encoder output dimension
+enc_dim: 128              # Encoder output dimension #need this if we want to use projection
 latent_dim: 256           # World-model latent state size
 mlp_dim: 256              # Hidden width for all MLP modules
 
@@ -16,7 +16,6 @@ mlp_dim: 256              # Hidden width for all MLP modules
 # Convolutional encoder (pixel observations)
 # ----------------------------------------------------------
 num_channels: 16          # Base CNN channel count
-num_enc_layers: 2         # Number of convolutional layers
 
 # ----------------------------------------------------------
 # Value ensemble (distributional)
@@ -39,4 +38,3 @@ dropout: 0.0
 # ----------------------------------------------------------
 log_std_min: -10           # Minimum policy std (log scale)
 log_std_max: 2             # Maximum policy std (log scale)
-entropy_coef: 1e-4         # Entropy regularization weight

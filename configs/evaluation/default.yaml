@@ -7,14 +7,13 @@
 # Evaluation frequency
 # ----------------------------------------------------------
 # Number of environment steps between evaluations
-eval_freq: 5_000
+eval_freq: 500
 
 # ----------------------------------------------------------
 # Evaluation episodes
 # ----------------------------------------------------------
 # Number of full episodes per evaluation phase
-eval_episodes: 5 #used
-
+eval_episodes: 5
 # ----------------------------------------------------------
 # Planning mode
 # ----------------------------------------------------------
@@ -22,20 +21,13 @@ eval_episodes: 5 #used
 #   - disables exploration noise
 #   - uses mean action sequences
 #   - turns off stochastic sampling
-deterministic: false
+deterministic: false #currently not used
 
 # ----------------------------------------------------------
 # Rendering / video recording
 # ----------------------------------------------------------
-save_video: false #used
-video_fps: 30
-video_format: mp4
-
-# ----------------------------------------------------------
-# Output logging
-# ----------------------------------------------------------
-save_csv: true
-save_metrics: true
+save_video: false
+video_fps: 30 #currently not used
 
 # ----------------------------------------------------------
 # Evaluation mode
