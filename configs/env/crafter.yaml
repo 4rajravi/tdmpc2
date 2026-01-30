@@ -13,7 +13,7 @@ task: crafter_reward
 obs_type: pixel
 
 # Agent does not observe full environment state
-partial_observable: true
+partial_observable: true #not used
 
 # ----------------------------------------------------------
 # Image preprocessing
@@ -45,9 +45,9 @@ render_mode: rgb_array
 # ----------------------------------------------------------
 # Action space
 # ----------------------------------------------------------
-discrete_actions: true
-num_actions: 17
-action_repeat: 1
+discrete_actions: true #not used
+num_actions: 17 #not used
+action_repeat: 1 #not used
 
 # ----------------------------------------------------------
 # Environment wrappers

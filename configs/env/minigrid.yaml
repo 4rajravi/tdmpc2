@@ -12,7 +12,7 @@ name: minigrid
 #   MiniGrid-Empty-8x8-v0
 #   MiniGrid-DoorKey-8x8-v0
 #   MiniGrid-FourRooms-v0
-task: MiniGrid-Empty-8x8-v0
+task: MiniGrid-KeyCorridorS3R3-v0
 
 # ----------------------------------------------------------
 # Observations

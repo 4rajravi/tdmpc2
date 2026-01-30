@@ -10,31 +10,31 @@ enabled: true
 # Planning horizon
 # ----------------------------------------------------------
 # Number of imagined steps per planning phase
-horizon: 3
+horizon: 3 #used
 
 # ----------------------------------------------------------
 # MPPI / CEM-style optimization
 # ----------------------------------------------------------
-iterations: 3               # Optimization iterations
-num_samples: 128            # Candidate trajectories per iteration
-num_elites: 16              # Top trajectories used for update
+iterations: 3               # Optimization iterations #used
+num_samples: 128            # Candidate trajectories per iteration #used
+num_elites: 16              # Top trajectories used for update #used
 
 # ----------------------------------------------------------
 # Trajectory sampling temperature
 # ----------------------------------------------------------
-temperature: 1.0            # Lower = greedier, higher = more exploratory
+temperature: 1.0            # Lower = greedier, higher = more exploratory #used
 
 # ----------------------------------------------------------
 # Action distribution constraints
 # ----------------------------------------------------------
-min_std: 0.05                # Minimum action std
-max_std: 2.0                 # Maximum action std
+min_std: 0.05                # Minimum action std #used
+max_std: 2.0                 # Maximum action std #used
 
 # ----------------------------------------------------------
 # Policy prior integration
 # ----------------------------------------------------------
 # Number of trajectories sampled from the learned policy
-num_pi_trajs: 8
+num_pi_trajs: 8 #used
 
 # Whether MPC mixes learned policy rollouts with random samples
 use_policy_prior: true
@@ -42,4 +42,4 @@ use_policy_prior: true
 # ----------------------------------------------------------
 # Rollout discounting
 # ----------------------------------------------------------
-discount: 0.99
+discount: 0.99 

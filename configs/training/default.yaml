@@ -12,24 +12,24 @@ steps: 10_000
 # ----------------------------------------------------------
 # Replay buffer
 # ----------------------------------------------------------
-buffer_size: 20_000        # Maximum replay capacity
-batch_size: 128              # Samples per gradient update
-seed_steps: 1_000            # Initial random exploration steps
+buffer_size: 10_000        # Maximum replay capacity #used
+batch_size: 128              # Samples per gradient update #used
+seed_steps: 5_000            # Initial random exploration steps #used
 
 # ----------------------------------------------------------
 # Optimization
 # ----------------------------------------------------------
-lr: 3e-4                     # Base learning rate
+lr: 3e-4                     # Base learning rate #used
 enc_lr_scale: 0.3            # Encoder LR multiplier
-grad_clip_norm: 20.0         # Global gradient norm clipping
+grad_clip_norm: 20.0         # Global gradient norm clipping #used
 
 # ----------------------------------------------------------
 # Discounting & target networks
 # ----------------------------------------------------------
-discount: 0.99
-vmin: -10.0                  # Distributional value support
-vmax: 10.0
-tau: 0.01                    # Target network EMA rate
+discount: 0.99 #used
+vmin: -10.0                  # Distributional value support #used
+vmax: 10.0 #used
+tau: 0.01                    # Target network EMA rate #used
 
 # ----------------------------------------------------------
 # TD-MPC2 loss weights
@@ -43,13 +43,13 @@ termination_coef: 1.0        # Episode termination prediction
 # Temporal weighting (λ)
 # ----------------------------------------------------------
 # Controls multi-step rollout loss decay
-rho: 0.5
+rho: 0.5 #used
 
 # ----------------------------------------------------------
 # Training schedule
 # ----------------------------------------------------------
-update_every: 1              # Env steps per update cycle
-updates_per_step: 1          # Gradient updates per env step
+update_every: 1              # Env steps per update cycle #used
+updates_per_step: 1          # Gradient updates per env step #used
 
 # ----------------------------------------------------------
 # Performance

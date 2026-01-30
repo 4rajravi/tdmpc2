@@ -1,22 +1,19 @@
 import crafter
 import gymnasium as gym
 
+from tdmpc2.envs.crafter.gym_compat import GymCompatibilityWrapper
+
 
 def make_crafter_env(cfg):
-    """
-    Crafter environment wrapper.
 
-    Crafter does NOT follow the Gymnasium seeding API,
-    so the seed must be passed explicitly.
-    """
-
-    # Crafter supports seed at construction
     if cfg.seed is not None:
         env = crafter.Env(seed=cfg.seed)
     else:
         env = crafter.Env()
 
-    # Optional time limit wrapper
+    # ✅ convert old gym → gymnasium
+    env = GymCompatibilityWrapper(env)
+
     if hasattr(cfg, "episode_length"):
         env = gym.wrappers.TimeLimit(
             env,

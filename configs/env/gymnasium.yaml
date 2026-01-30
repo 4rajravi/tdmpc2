@@ -20,7 +20,7 @@ task: CartPole-v1
 # ----------------------------------------------------------
 # state  → low-dimensional vector observations
 # pixel  → rendered RGB observations
-obs_type: pixel
+obs_type: state
 partial_observable: false
 
 # ----------------------------------------------------------

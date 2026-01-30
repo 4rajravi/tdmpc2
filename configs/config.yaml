@@ -18,8 +18,8 @@
 #   python train.py env=crafter model=large planner=no_mpc
 #
 defaults:
-  - env: minigrid          # Environment definition
-  - obs: pixel             # Observation processing (pixel | state)
+  - env: gymnasium          # Environment definition
+  - obs: state             # Observation processing (pixel | state)
   - model: small          # Model capacity (small | medium | large)
   - planner: mpc           # Planning method (mpc | no_mpc)
   - training: default      # Training hyperparameters
