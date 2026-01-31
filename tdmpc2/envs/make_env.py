@@ -36,8 +36,5 @@ def make_env(env_cfg):
             f"Valid options: gymnasium | minigrid | crafter"
         )
 
-    if env_cfg.seed is not None:
-        env.reset(seed=env_cfg.seed)
-
     return env
 

@@ -11,9 +11,6 @@ def make_minigrid_wrapped_env(env, size=64):
     Convert MiniGrid symbolic observations to real RGB images.
     """
 
-    # # full visibility
-    # env = FullyObsWrapper(env)
-
     # IMPORTANT: force pixel rendering
     env = RGBImgObsWrapper(env, tile_size=8)
 
