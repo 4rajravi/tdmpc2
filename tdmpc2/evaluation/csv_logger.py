@@ -1,41 +1,77 @@
-import csv
 import os
+import csv
 
 
 class CSVLogger:
     """
-    Evaluation CSV logger.
-
-    Each row corresponds to one evaluation episode.
-
-    Columns:
-        eval_step   → training step when evaluation happened
-        episode     → episode index within evaluation
-        return      → episode return
-        length      → episode length
+    Logs evaluation metrics to CSV.
     """
 
-    def __init__(self, path):
-        self.path = path
-        os.makedirs(os.path.dirname(path), exist_ok=True)
+    def __init__(self, save_dir):
+        os.makedirs(save_dir, exist_ok=True)
 
-        # write header only once
-        if not os.path.exists(self.path):
-            with open(self.path, "w", newline="") as f:
+        self.episode_path = os.path.join(save_dir, "eval_episodes.csv")
+        self.summary_path = os.path.join(save_dir, "eval_summary.csv")
+
+        self._init_episode_csv()
+        self._init_summary_csv()
+
+    # --------------------------------------------------
+    def _init_episode_csv(self):
+        if not os.path.exists(self.episode_path):
+            with open(self.episode_path, "w", newline="") as f:
                 writer = csv.writer(f)
-                writer.writerow([
-                    "eval_step",
-                    "episode",
-                    "return",
-                    "length"
-                ])
+                writer.writerow(
+                    ["eval_step", "episode", "return", "length", "success"]
+                )
 
-    def log(self, eval_step, episode, ret, length):
-        with open(self.path, "a", newline="") as f:
+    # --------------------------------------------------
+    def _init_summary_csv(self):
+        if not os.path.exists(self.summary_path):
+            with open(self.summary_path, "w", newline="") as f:
+                writer = csv.writer(f)
+                writer.writerow(
+                    [
+                        "eval_step",
+                        "mean_return",
+                        "std_return",
+                        "min_return",
+                        "max_return",
+                        "mean_length",
+                        "success_rate",
+                    ]
+                )
+
+    # --------------------------------------------------
+    def log_episode(self, *, eval_step, episode, ret, length, success):
+        with open(self.episode_path, "a", newline="") as f:
             writer = csv.writer(f)
-            writer.writerow([
-                eval_step,
-                episode,
-                ret,
-                length
-            ])
+            writer.writerow(
+                [eval_step, episode, ret, length, success]
+            )
+
+    # --------------------------------------------------
+    def log_summary(
+        self,
+        *,
+        eval_step,
+        mean_return,
+        std_return,
+        min_return,
+        max_return,
+        mean_length,
+        success_rate,
+    ):
+        with open(self.summary_path, "a", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(
+                [
+                    eval_step,
+                    mean_return,
+                    std_return,
+                    min_return,
+                    max_return,
+                    mean_length,
+                    success_rate,
+                ]
+            )

@@ -23,6 +23,8 @@ eval_episodes: 5
 #   - turns off stochastic sampling
 deterministic: false #currently not used
 
+success_threshold: 1.0 
+
 # ----------------------------------------------------------
 # Rendering / video recording
 # ----------------------------------------------------------

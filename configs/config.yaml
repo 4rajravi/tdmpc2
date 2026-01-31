@@ -18,7 +18,7 @@
 #   python train.py env=crafter model=large planner=no_mpc
 #
 defaults:
-  - env: crafter          # Environment definition
+  - env: minigrid          # Environment definition
   - obs: pixel             # Observation processing (pixel | state)
   - model: small          # Model capacity (small | medium | large)
   - planner: mpc           # Planning method (mpc | no_mpc)
@@ -43,7 +43,7 @@ work_dir: ${hydra:runtime.output_dir}
 # Runtime / development flags
 # ----------------------------------------------------------
 
-save_agent: true            # Save final model checkpoint
+save_agent: true            # Save final model checkpoint #not used currently
 
-debug: false                # Enable debug mode (short runs, extra logging)
-test_only: false            # Skip training and run evaluation only
+debug: false                # Enable debug mode (short runs, extra logging)#not used currently
+test_only: false            # Skip training and run evaluation only#not used currently

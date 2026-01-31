@@ -1,6 +1,7 @@
 from tdmpc2.envs.gymnasium.gym_env import make_gym_env
 from tdmpc2.envs.minigrid.minigrid_env import make_minigrid_env
 from tdmpc2.envs.crafter.crafter_env import make_crafter_env
+from tdmpc2.envs.carracing.carracing_env import make_carracing_env
 
 def make_env(env_cfg):
     """
@@ -29,6 +30,14 @@ def make_env(env_cfg):
 
     elif name == "crafter":
         env = make_crafter_env(env_cfg)
+    elif name == "carracing":
+        env = make_carracing_env(
+            task=env_cfg.task,
+            image_size=env_cfg.image_size,
+            action_repeat=env_cfg.action_repeat,
+            seed=env_cfg.seed,
+            render=env_cfg.render
+        )
 
     else:
         raise ValueError(
