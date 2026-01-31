@@ -18,6 +18,7 @@ from tdmpc2.planning.mpc import MPC
 from tdmpc2.training.trainer import Trainer
 from tdmpc2.evaluation.evaluator import Evaluator
 from tdmpc2.evaluation.csv_logger import CSVLogger
+from tdmpc2.evaluation.plot_result import plot_all
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -47,7 +48,7 @@ def main(cfg: DictConfig):
     obs_shape = obs.shape
 
     csv_logger = CSVLogger(
-    os.path.join(cfg.work_dir, "eval.csv"))
+    os.path.join(cfg.work_dir, "eval_csv"))
 
     action_dim = (
         env.action_space.n
@@ -161,6 +162,7 @@ def main(cfg: DictConfig):
 
     print("Training complete.")
 
+    plot_all(cfg.work_dir)
 
 if __name__ == "__main__":
     main()
