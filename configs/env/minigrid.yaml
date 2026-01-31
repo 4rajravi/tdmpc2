@@ -24,6 +24,7 @@ obs_type: pixel
 # MiniGrid environments are partially observable by default
 partial_observable: true
 
+reward_scale: 1.0    # Scale factor for environment rewards
 # ----------------------------------------------------------
 # Image preprocessing
 # ----------------------------------------------------------

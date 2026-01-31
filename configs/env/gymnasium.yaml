@@ -23,6 +23,7 @@ task: CartPole-v1
 obs_type: state
 partial_observable: false
 
+reward_scale: 1.0    # Scale factor for environment rewards
 # ----------------------------------------------------------
 # Image preprocessing (used only if obs_type = pixel)
 # ----------------------------------------------------------

@@ -15,6 +15,7 @@ obs_type: pixel
 # Agent does not observe full environment state
 partial_observable: true #not used
 
+reward_scale: 1.0    # Scale factor for environment rewards
 # ----------------------------------------------------------
 # Image preprocessing
 # ----------------------------------------------------------

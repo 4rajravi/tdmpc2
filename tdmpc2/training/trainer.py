@@ -81,6 +81,7 @@ class Trainer:
             action_idx, action_vec = self.act(self.obs)
 
             next_obs, reward, terminated, truncated, _ = self.env.step(action_idx)
+            reward = reward / self.env_cfg.reward_scale
             done = terminated or truncated
 
             self.buffer.add(

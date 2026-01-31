@@ -72,7 +72,9 @@ def update_step(
 
     target_dist = reward_to_dist(
     reward,
-    num_bins=num_bins
+    num_bins=num_bins,
+    vmin=cfg.vmin,
+    vmax=cfg.vmax
     )
 
     loss_reward = reward_loss(
