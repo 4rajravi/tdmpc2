@@ -1,17 +1,57 @@
-import numpy as np
 import gymnasium as gym
+import numpy as np
+import cv2
 
 
-class CarRacingActionWrapper(gym.ActionWrapper):
-    def action(self, action):
-        action = np.asarray(action, dtype=np.float32)
-        action[0] = np.clip(action[0], -1.0, 1.0)
-        action[1] = np.clip(action[1],  0.0, 1.0)
-        action[2] = np.clip(action[2],  0.0, 1.0)
-        return action
+class CarRacingImageWrapper(gym.Wrapper):
+    """
+    TD-MPC2 compatible CarRacing-v3 wrapper.
+    """
 
+    def __init__(self, env, image_size=64, action_repeat=1):
+        super().__init__(env)
 
-def make_carracing_wrapped_env(env):
-    # ONLY clip actions
-    # NO observation transforms
-    return CarRacingActionWrapper(env)
+        self.image_size = image_size
+        self.action_repeat = action_repeat
+
+        # override observation space
+        self.observation_space = gym.spaces.Box(
+            low=0,
+            high=255,
+            shape=(image_size, image_size, 3),
+            dtype=np.uint8
+        )
+
+    # --------------------------------------------------
+    def reset(self, *, seed=None, options=None):
+        obs, info = self.env.reset(seed=seed)
+        obs = self._process_obs(obs)
+        return obs, info
+
+    # --------------------------------------------------
+    def step(self, action):
+
+        total_reward = 0.0
+        terminated = False
+        truncated = False
+
+        for _ in range(self.action_repeat):
+
+            obs, reward, terminated, truncated, info = self.env.step(action)
+            total_reward += reward
+
+            if terminated or truncated:
+                break
+
+        obs = self._process_obs(obs)
+
+        return obs, total_reward, terminated, truncated, info
+
+    # --------------------------------------------------
+    def _process_obs(self, obs):
+        obs = cv2.resize(
+            obs,
+            (self.image_size, self.image_size),
+            interpolation=cv2.INTER_AREA
+        )
+        return obs

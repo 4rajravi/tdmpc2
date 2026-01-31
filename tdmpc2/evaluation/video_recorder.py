@@ -1,6 +1,9 @@
 import imageio
 import os
 
+import warnings
+warnings.filterwarnings("ignore")
+
 
 class VideoRecorder:
 

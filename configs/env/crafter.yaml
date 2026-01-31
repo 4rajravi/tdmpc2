@@ -41,6 +41,7 @@ episode_length: 1000    # Maximum steps per episode
 # Rendering
 # ----------------------------------------------------------
 render_mode: rgb_array
+render: true
 
 # ----------------------------------------------------------
 # Action space
