@@ -125,11 +125,6 @@ def update_step(
 
     optimizers.step()
 
-    # --------------------------------------------------
-    # EMA update
-    # --------------------------------------------------
-    target_networks.update()
-
     return {
         "total": loss.item(),
         "consistency": loss_cons.item(),
