@@ -10,21 +10,20 @@ def tdmpc2_loss(
     rho,
 ):
     """
-    TD-MPC2 total loss.
+    TD-MPC2 total loss with rho^t weighting.
     """
 
     loss = 0.0
 
-    # consistency
-    for l in consistency_losses:
-        loss += coeffs["consistency"] * l
+    H = len(consistency_losses)
 
-    # reward
-    for l in reward_losses:
-        loss += coeffs["reward"] * l
+    for t in range(H):
+        w = rho ** t
 
-    # value
-    for l in value_losses:
-        loss += coeffs["value"] * l
+        loss += w * (
+            coeffs["consistency"] * consistency_losses[t]
+            + coeffs["reward"] * reward_losses[t]
+            + coeffs["value"] * value_losses[t]
+        )
 
     return loss
