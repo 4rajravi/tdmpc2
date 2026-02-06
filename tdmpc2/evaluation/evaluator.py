@@ -79,11 +79,11 @@ class Evaluator:
             # --------------------------------------------------
             while not done:
 
-                obs_t = (
-                    torch.as_tensor(obs, device=self.device)
-                    .float()
-                    .unsqueeze(0)
-                )
+                obs_t = torch.as_tensor(
+                    obs,
+                    dtype=torch.float32,
+                    device=self.device
+                ).unsqueeze(0)
 
                 if obs_t.ndim == 4 and obs_t.shape[-1] == 3:
                     obs_t = obs_t.permute(0, 3, 1, 2)

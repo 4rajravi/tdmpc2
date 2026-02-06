@@ -1,51 +1,44 @@
-# ==========================================================
-# Training Configuration
-# Controls learning, optimization, and replay behavior
-# ==========================================================
-
 # ----------------------------------------------------------
 # Total environment interaction
 # ----------------------------------------------------------
-# Number of environment steps collected during training
-steps: 1_000
+steps: 1_000_000
 
 # ----------------------------------------------------------
 # Replay buffer
 # ----------------------------------------------------------
-buffer_size: 1_000        # Maximum replay capacity 
-batch_size: 128              # Samples per gradient update 
-seed_steps: 500            # Initial random exploration steps 
+buffer_size: 100_000
+batch_size: 128
+seed_steps: 5_000
 
-# -------a---------------------------------------------------
+# ----------------------------------------------------------
 # Optimization
 # ----------------------------------------------------------
-lr: 3e-4                     # Base learning rate 
-grad_clip_norm: 20.0         # Global gradient norm clipping 
+lr: 3e-4
+grad_clip_norm: 20.0
 
 # ----------------------------------------------------------
 # Discounting & target networks
 # ----------------------------------------------------------
-discount: 0.99 
-vmin: -10.0                  # Distributional value support 
-vmax: 10.0 
-tau: 0.01                    # Target network EMA rate 
+discount: 0.99
+vmin: -100.0
+vmax: 100.0
+tau: 0.01
 
 # ----------------------------------------------------------
 # TD-MPC2 loss weights
 # ----------------------------------------------------------
-reward_coef: 0.1             # Reward prediction loss
-value_coef: 0.1              # Value prediction loss
-consistency_coef: 20.0       # Latent dynamics consistency loss
-termination_coef: 1.0        # Episode termination prediction
+reward_coef: 0.5
+value_coef: 0.5
+consistency_coef: 10.0
+termination_coef: 1.0
 
 # ----------------------------------------------------------
-# Temporal weighting (λ)
+# Temporal weighting
 # ----------------------------------------------------------
-# Controls multi-step rollout loss decay
-rho: 0.5 
+rho: 0.75
 
 # ----------------------------------------------------------
 # Training schedule
 # ----------------------------------------------------------
-update_every: 1              # Env steps per update cycle 
-updates_per_step: 1          # Gradient updates per env step 
+update_every: 1
+updates_per_step: 2

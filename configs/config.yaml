@@ -18,9 +18,9 @@
 #   python train.py env=crafter model=large planner=no_mpc
 #
 defaults:
-  - env: carracing          # Environment definition
-  - obs: pixel             # Observation processing (pixel | state)
-  - model: small          # Model capacity (small | medium | large)
+  - env: gymnasium          # Environment definition
+  - obs: state             # Observation processing (pixel | state)
+  - model: medium          # Model capacity (small | medium | large)
   - planner: mpc           # Planning method (mpc | no_mpc)
   - training: default      # Training hyperparameters
   - evaluation: default    # Evaluation behavior
@@ -31,7 +31,7 @@ defaults:
 # Global experiment settings
 # ----------------------------------------------------------
 
-seed: 1                     # Global RNG seed for reproducibility
+seed: 23                     # Global RNG seed for reproducibility
 
 exp_name: tdmpc2            # Experiment name (used for logging)
 

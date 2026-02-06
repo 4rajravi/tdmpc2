@@ -1,6 +1,5 @@
 # ==========================================================
-# Generic Gymnasium Environment Configuration
-# Used for classic-control and Box2D Gym environments
+# Gymnasium Environment Configuration — Hopper-v4
 # ==========================================================
 
 name: gymnasium
@@ -8,24 +7,18 @@ name: gymnasium
 # ----------------------------------------------------------
 # Environment task
 # ----------------------------------------------------------
-# Examples:
-#   CartPole-v1
-#   Acrobot-v1
-#   MountainCar-v0
-#   LunarLander-v2
-task: CartPole-v1
+task: Hopper-v4
 
 # ----------------------------------------------------------
 # Observations
 # ----------------------------------------------------------
-# state  → low-dimensional vector observations
-# pixel  → rendered RGB observations
 obs_type: state
 partial_observable: false
 
-reward_scale: 1.0    # Scale factor for environment rewards
+reward_scale: 1.0
+
 # ----------------------------------------------------------
-# Image preprocessing (used only if obs_type = pixel)
+# Image preprocessing (unused for state obs)
 # ----------------------------------------------------------
 image_size: 64
 channels: 3
@@ -35,25 +28,23 @@ normalize_obs: true
 # ----------------------------------------------------------
 # Temporal context
 # ----------------------------------------------------------
-# Number of stacked observations per timestep
-# For state-based environments, frame stacking is usually unnecessary
 frame_stack: 1
 
 # ----------------------------------------------------------
 # Episode control
 # ----------------------------------------------------------
-episode_length: 500
+episode_length: 1000    # Hopper default horizon
 
 # ----------------------------------------------------------
 # Rendering
 # ----------------------------------------------------------
-render: true
+render: false            # turn off during training (faster)
 render_mode: rgb_array
 
 # ----------------------------------------------------------
 # Action space
 # ----------------------------------------------------------
-discrete_actions: true
+discrete_actions: false  # Hopper is continuous
 action_repeat: 1
 
 # ----------------------------------------------------------

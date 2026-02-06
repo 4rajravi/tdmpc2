@@ -60,7 +60,9 @@ class MPC:
             self.mppi.update(actions, returns)
 
         # execute first action
-        return self.mppi.mean[0]
+        action = self.mppi.mean[0]
+
+        return action
 
     # --------------------------------------------------
     def evaluate(self, z0, actions):
@@ -85,7 +87,19 @@ class MPC:
             z = out["z_next"]
 
             r_logits = out["reward"]
-            r = r_logits.softmax(-1).mean(-1)
+            probs = r_logits.softmax(-1)
+
+            num_bins = probs.shape[-1]
+
+            support = torch.linspace(
+                self.training_cfg.vmin,
+                self.training_cfg.vmax,
+                num_bins,
+                device=probs.device
+            )
+
+            r = (probs * support).sum(-1)
+
 
             total_return += (self.gamma ** t) * r
 
@@ -95,11 +109,21 @@ class MPC:
         a_T, _ = self.policy_prior.sample(z)
 
         q_logits = self.model.value(z, a_T)
+        num_bins = q_logits[0].shape[-1]
 
-        q = torch.stack(
-            [q.softmax(-1).mean(-1) for q in q_logits],
-            dim=0
-        ).min(0)[0]
+        support = torch.linspace(
+            self.training_cfg.vmin,
+            self.training_cfg.vmax,
+            num_bins,
+            device=z.device
+        )
+
+        qs = []
+        for q in q_logits:
+            probs = q.softmax(-1)
+            qs.append((probs * support).sum(-1))
+
+        q = torch.stack(qs, dim=0).min(0)[0]
 
         total_return += (self.gamma ** self.H) * q
 

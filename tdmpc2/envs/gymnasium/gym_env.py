@@ -1,5 +1,8 @@
 import gymnasium as gym
 
+import warnings
+warnings.filterwarnings("ignore")
+
 def make_gym_env(cfg):
     env = gym.make(
         cfg.task,

@@ -1,4 +1,5 @@
 import torch
+import numpy as np
 
 from tdmpc2.replay.replay_buffer import ReplayBuffer
 from tdmpc2.training.update_step import update_step
@@ -129,7 +130,7 @@ class Trainer:
     @torch.no_grad()
     def act(self, obs):
 
-        obs = torch.as_tensor(obs, device=self.device).float()
+        obs = torch.as_tensor(obs, dtype=torch.float32, device=self.device)
 
         if obs.ndim == 3:
             obs = obs.permute(2, 0, 1)
@@ -146,6 +147,7 @@ class Trainer:
         # ------------------------------------
         if self.mpc is not None:
             action_vec = self.mpc.plan(z)
+
         else:
             action_vec, _ = self.policy_prior.sample(z)
 
@@ -162,9 +164,12 @@ class Trainer:
             )
             one_hot[action_idx] = 1.0
 
+
             return action_idx, one_hot
 
         else:
+
+
             return (
                 action_vec.squeeze(0).cpu().numpy(),
                 action_vec.squeeze(0)
