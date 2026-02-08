@@ -82,7 +82,7 @@ class Trainer:
             action_idx, action_vec = self.act(self.obs)
 
             next_obs, reward, terminated, truncated, _ = self.env.step(action_idx)
-            reward = reward / self.env_cfg.reward_scale
+            #reward = reward / self.env_cfg.reward_scale
             done = terminated or truncated
 
             self.buffer.add(
@@ -146,7 +146,15 @@ class Trainer:
         # get continuous action
         # ------------------------------------
         if self.mpc is not None:
-            action_vec = self.mpc.plan(z)
+
+            pi_action, _ = self.policy_prior.sample(z)
+            mpc_action = self.mpc.plan(z)
+
+            print("[POLICY GAP]",
+                (mpc_action - pi_action).abs().mean().item())
+
+            action_vec = mpc_action
+
 
         else:
             action_vec, _ = self.policy_prior.sample(z)

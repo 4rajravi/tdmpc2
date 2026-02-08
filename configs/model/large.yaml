@@ -36,5 +36,5 @@ dropout: 0.05
 # ----------------------------------------------------------
 # Policy prior / entropy control
 # ----------------------------------------------------------
-log_std_min: -10           # Minimum policy std (log scale)
-log_std_max: 2             # Maximum policy std (log scale)\
+log_std_min: -5           # Minimum policy std (log scale)
+log_std_max: 0.5        # Maximum policy std (log scale)\

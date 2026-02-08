@@ -52,6 +52,13 @@ def compute_td_target(
 
         q = (torch.softmax(q_logits, dim=-1) * support).sum(dim=-1)
 
+        print(
+    "[Q DEBUG]",
+    "q_mean:", q.mean().item(),
+    "q_max:", q.max().item(),
+)
+
+
         # --------------------------------------------------
         # TD target
         # --------------------------------------------------

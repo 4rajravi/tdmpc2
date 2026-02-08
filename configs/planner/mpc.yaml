@@ -10,31 +10,31 @@ enabled: true
 # Planning horizon
 # ----------------------------------------------------------
 # Number of imagined steps per planning phase
-horizon: 3 #used
+horizon: 5
 
 # ----------------------------------------------------------
 # MPPI / CEM-style optimization
 # ----------------------------------------------------------
-iterations: 3               # Optimization iterations #used
-num_samples: 128            # Candidate trajectories per iteration #used
-num_elites: 16              # Top trajectories used for update #used
+iterations: 2               # Optimization iterations #used
+num_samples: 96            # Candidate trajectories per iteration #used
+num_elites: 8              # Top trajectories used for update #used
 
 # ----------------------------------------------------------
 # Trajectory sampling temperature
 # ----------------------------------------------------------
-temperature: 1.0            # Lower = greedier, higher = more exploratory #used
+temperature: 1.15            # Lower = greedier, higher = more exploratory #used
 
 # ----------------------------------------------------------
 # Action distribution constraints
 # ----------------------------------------------------------
-min_std: 0.05                # Minimum action std #used
-max_std: 2.0                 # Maximum action std #used
+min_std: 0.12               # Minimum action std #used
+max_std: 1.5               # Maximum action std #used
 
 # ----------------------------------------------------------
 # Policy prior integration
 # ----------------------------------------------------------
 # Number of trajectories sampled from the learned policy
-num_pi_trajs: 8 #used
+num_pi_trajs: 24 #used
 
 # Whether MPC mixes learned policy rollouts with random samples
 use_policy_prior: true
@@ -43,3 +43,18 @@ use_policy_prior: true
 # Rollout discounting
 # ----------------------------------------------------------
 discount: 0.99 
+
+
+
+
+
+# horizon: 8 
+# iterations: 2               # Optimization iterations #used
+# num_samples: 182            # Candidate trajectories per iteration #used
+# num_elites: 8              # Top trajectories used for update #used
+# temperature: 1.0            # Lower = greedier, higher = more exploratory #used
+# min_std: 0.1               # Minimum action std #used
+# max_std: 1.5               # Maximum action std #used
+# num_pi_trajs: 32
+# use_policy_prior: true
+# discount: 0.99 

@@ -62,6 +62,18 @@ class MPC:
         # execute first action
         action = self.mppi.mean[0]
 
+        print(
+        "[MPC DEBUG]",
+        "mean_std:", self.mppi.std.mean().item(),
+        "max_std:", self.mppi.std.max().item(),
+        "action_norm:", action.norm().item()
+    )
+        print("[PLAN VALUE]",
+      "mean_return:", returns.mean().item(),
+      "max_return:", returns.max().item())
+
+
+
         return action
 
     # --------------------------------------------------

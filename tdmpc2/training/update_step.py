@@ -46,8 +46,22 @@ def update_step(
     # --------------------------------------------------
     # encode
     # --------------------------------------------------
-    z = simnorm(encoder(obs))
-    z_next = simnorm(encoder(next_obs))
+    
+    z_raw = encoder(obs)
+    z_next_raw = encoder(next_obs)
+
+    print(
+        "[ENC RAW]",
+        "z_raw_norm:", z_raw.norm(dim=-1).mean().item(),
+        "z_next_raw_norm:", z_next_raw.norm(dim=-1).mean().item(),
+    )
+
+    z = simnorm(z_raw)
+    z_next = simnorm(z_next_raw)
+
+
+    # z = simnorm(encoder(obs))
+    # z_next = simnorm(encoder(next_obs))
 
     # --------------------------------------------------
     # ensure action shape
@@ -63,12 +77,36 @@ def update_step(
     # --------------------------------------------------
     out = world_model(z, action)
 
+    print(
+    "[WORLD MODEL]",
+    "z_in_norm:", z.norm(dim=-1).mean().item(),
+    "z_pred_norm:", out["z_next"].norm(dim=-1).mean().item(),
+)
+
+
     # --------------------------------------------------
     # losses
     # --------------------------------------------------
+    print(
+    "[CONS DEBUG]",
+    "pred_mean:", out["z_next"].mean().item(),
+    "target_mean:", z_next.mean().item(),
+    "diff:", (out["z_next"] - z_next.detach()).abs().mean().item(),
+)
+
     loss_cons = consistency_loss(out["z_next"], z_next)
 
     num_bins = out["reward"].shape[-1]
+    
+    bin_width = (cfg.vmax - cfg.vmin) / (num_bins - 1)
+    print(
+            "[DIST INFO]",
+            "num_bins:", num_bins,
+            "vmin:", cfg.vmin,
+            "vmax:", cfg.vmax,
+            "bin_width:", bin_width
+        )
+
 
     target_dist = reward_to_dist(
     reward,
@@ -91,7 +129,11 @@ def update_step(
             target_q=target_networks.target,
             cfg=cfg
         )
-
+    print(
+    "[TD TARGET]",
+    "mean:", td_target.mean().item(),
+    "max:", td_target.max().item(),
+)
 
     loss_value = value_loss(
         out["value"],
@@ -126,6 +168,15 @@ def update_step(
     )
 
     optimizers.step()
+
+    print(
+        {
+            "total": loss.item(),
+            "consistency": loss_cons.item(),
+            "reward": loss_reward.item(),
+            "value": loss_value.item()
+        }
+    )
 
     return {
         "total": loss.item(),

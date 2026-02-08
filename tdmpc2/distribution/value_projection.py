@@ -35,9 +35,6 @@ def value_to_dist(
     dist.scatter_add_(1, l, (u.float() - b))
     dist.scatter_add_(1, u, (b - l.float()))
 
-    # --------------------------------------------------
-    # FIX: handle exact-bin case (l == u)
-    # --------------------------------------------------
     eq_mask = (u == l)
 
     if eq_mask.any():

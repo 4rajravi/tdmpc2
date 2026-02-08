@@ -44,21 +44,34 @@ class GaussianPolicy(nn.Module):
 
         return mean, log_std, std
 
+
     def sample(self, z):
+        LOG_2PI = 1.8378770664093453
         mean, log_std, std = self(z)
 
         eps = torch.randn_like(std)
-        action = mean + eps * std
+        pre_tanh = mean + eps * std
+        action = torch.tanh(pre_tanh)
+
+        # ---------------- DEBUG PRINT ----------------
+        # Print only occasionally or your console will freeze
+        if torch.rand(1).item() < 0.01:
+            print(
+                "[ACTOR]",
+                "mean_abs:", action.abs().mean().item(),
+                "std:", std.mean().item()
+            )
+        # ---------------------------------------------
 
         log_prob = (
             -0.5 * eps.pow(2)
             - log_std
-            - 0.5 * torch.log(
-                torch.tensor(2 * 3.141592, device=z.device)
-            )
+            - 0.5 * LOG_2PI
         ).sum(-1)
 
         return action, log_prob
+
+
 
     def entropy(self, z):
         _, log_std, _ = self(z)
