@@ -7,6 +7,7 @@ def make_encoder(obs_cfg, model_cfg, obs_shape):
     if obs_cfg.type == "pixel":
         return CNNEncoder(
             latent_dim=model_cfg.latent_dim,
+            in_channels=obs_shape[-1],        
             num_channels=model_cfg.num_channels
         )
 
@@ -18,3 +19,4 @@ def make_encoder(obs_cfg, model_cfg, obs_shape):
 
     else:
         raise ValueError(f"Unknown obs type {obs_cfg.type}")
+

@@ -28,20 +28,16 @@ def update_step(
     # --------------------------------------------------
     # move to device
     # --------------------------------------------------
-    obs = obs.to(device)
-    action = action.to(device)
-    reward = reward.to(device)
-    next_obs = next_obs.to(device)
-    done = done.to(device)
+    obs = obs.to(device, dtype=torch.float32)
+    action = action.to(device, dtype=torch.float32)
+    reward = reward.to(device, dtype=torch.float32)
+    next_obs = next_obs.to(device, dtype=torch.float32)
+    done = done.to(device, dtype=torch.float32)
+
 
     # --------------------------------------------------
     # HWC → CHW
     # --------------------------------------------------
-    if obs.ndim == 4 and obs.shape[-1] == 3:
-        obs = obs.permute(0, 3, 1, 2)
-
-    if next_obs.ndim == 4 and next_obs.shape[-1] == 3:
-        next_obs = next_obs.permute(0, 3, 1, 2)
 
     # --------------------------------------------------
     # encode

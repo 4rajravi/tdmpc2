@@ -132,9 +132,6 @@ class Trainer:
 
         obs = torch.as_tensor(obs, dtype=torch.float32, device=self.device)
 
-        if obs.ndim == 3:
-            obs = obs.permute(2, 0, 1)
-
         obs = obs.unsqueeze(0)
 
         # ------------------------------------

@@ -1,6 +1,7 @@
 import gymnasium as gym
 from tdmpc2.envs.carracing.wrappers import CarRacingImageWrapper
 
+
 def make_carracing_env(
     task="CarRacing-v3",
     image_size=64,

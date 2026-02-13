@@ -6,6 +6,7 @@ import cv2
 class CarRacingImageWrapper(gym.Wrapper):
     """
     TD-MPC2 compatible CarRacing-v3 wrapper.
+    Outputs (H, W, 3) uint8 images.
     """
 
     def __init__(self, env, image_size=64, action_repeat=1):
@@ -14,7 +15,6 @@ class CarRacingImageWrapper(gym.Wrapper):
         self.image_size = image_size
         self.action_repeat = action_repeat
 
-        # override observation space
         self.observation_space = gym.spaces.Box(
             low=0,
             high=255,
@@ -54,4 +54,8 @@ class CarRacingImageWrapper(gym.Wrapper):
             (self.image_size, self.image_size),
             interpolation=cv2.INTER_AREA
         )
-        return obs
+
+        # ⭐ IMPORTANT: ensure contiguous memory layout
+        obs = np.ascontiguousarray(obs)
+
+        return obs.astype(np.uint8)

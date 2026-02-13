@@ -26,11 +26,12 @@ class ReplayBuffer:
 
         self.current_episode.append(
             (
-                torch.as_tensor(obs).float(),
-                torch.as_tensor(action).float(),
-                torch.tensor(reward).float(),
-                torch.as_tensor(next_obs).float(),
-                torch.tensor(done).float()
+                torch.as_tensor(obs),
+                torch.as_tensor(action, dtype=torch.float32),
+                torch.tensor(reward, dtype=torch.float32),
+                torch.as_tensor(next_obs),
+                torch.tensor(done, dtype=torch.float32)
+
             )
         )
 
